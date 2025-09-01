@@ -1,15 +1,19 @@
 {
   "name": "facebook-gemini-bot",
   "version": "1.0.0",
-  "description": "Simple Facebook Page webhook bot that responds to 'start chat'. Optional Gemini (Google) integration.",
+  "description": "Facebook Page bot with Gemini 2.0 Flash integration (Webhook, Render.com ready)",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
-  "express": "^4.18.2",
-  "body-parser": "^1.20.2",
-  "node-fetch": "^3.4.1",
-  "dotenv": "^16.3.1",
-  "@google/generative-ai": "^0.14.1"
+    "express": "^4.18.2",
+    "body-parser": "^1.20.2",
+    "node-fetch": "^3.4.1",
+    "dotenv": "^16.3.1",
+    "@google/generative-ai": "^0.14.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
 }
