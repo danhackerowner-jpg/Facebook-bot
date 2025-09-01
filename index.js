@@ -51,25 +51,14 @@ app.post("/webhook", async (req, res) => {
           if (!senderId) continue;
 
           if (event.message?.text) {
-            const text = event.message.text.trim().toLowerCase();
+            const text = event.message.text.trim();
             console.log("Message from", senderId, ":", text);
 
-            if (text === "start chat") {
-              await sendTextMessage(senderId, "Starting chat...");
-
-              if (GEMINI_API_KEY) {
-                const reply = await generateWithGemini(
-                  "The user said 'start chat'. Greet them and ask how you can help."
-                );
-                await sendTextMessage(senderId, reply);
-              } else {
-                await sendTextMessage(
-                  senderId,
-                  "Gemini API not configured. Add GEMINI_API_KEY to enable AI replies."
-                );
-              }
+            if (GEMINI_API_KEY) {
+              const reply = await generateWithGemini(text);
+              await sendTextMessage(senderId, reply);
             } else {
-              await sendTextMessage(senderId, "I got: " + event.message.text);
+              await sendTextMessage(senderId, "I got: " + text);
             }
           }
         }
@@ -120,4 +109,4 @@ async function generateWithGemini(prompt) {
 app.listen(APP_PORT, () => {
   console.log("Server running on port", APP_PORT);
 });
-  
+            
