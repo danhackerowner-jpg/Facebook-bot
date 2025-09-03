@@ -106,7 +106,12 @@ async function generateWithGemini(prompt) {
   }
 }
 
+// Self-restart the process every 2 minutes (120,000 ms)
+setTimeout(() => {
+  console.log("Restarting server after 2 minutes...");
+  process.exit(0); // Most platforms will auto-restart the process
+}, 120000);
+
 app.listen(APP_PORT, () => {
   console.log("Server running on port", APP_PORT);
 });
-            
